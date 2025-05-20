@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Bikiran.Validation
 {
-    public class ValAll
+    public class ValidateBasic
     {
         public static ValidateStatus ValidateAll(List<ValidateStatus> parameters)
         {
