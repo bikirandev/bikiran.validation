@@ -1,14 +1,34 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+		<!-- Core Package Metadata -->
+		<PackageId>Bikiran.Validation</PackageId>
+		<Version>1.0.2</Version>
+		<Authors>bishojit</Authors>
+		<Company>BIKIRAN</Company>
+		<Description>Utility functions for common operations</Description>
+		<PackageTags>Form Validation tools</PackageTags>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.3.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-  </ItemGroup>
+		<!-- Recommended Additions -->
+		<PackageProjectUrl>https://github.com/bikirandev/bikiran.validation</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/bikirandev/bikiran.validation.git</RepositoryUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 
+		<!-- Add below existing PackageTags -->
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- Add NuGet.Protocol package reference -->
+		<PackageReference Include="NuGet.Protocol" Version="6.13.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Http" Version="2.3.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
 </Project>
