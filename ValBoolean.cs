@@ -1,5 +1,7 @@
 ﻿using System;
 
+#nullable enable
+
 namespace Bikiran.Validation
 {
     /// <summary>
@@ -71,3 +73,4 @@ namespace Bikiran.Validation
         }
     }
 }
+#nullable restore

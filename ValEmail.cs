@@ -1,5 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
+
+#nullable enable
+
 
 namespace Bikiran.Validation
 {
@@ -64,14 +69,14 @@ namespace Bikiran.Validation
         /// Validation rules:
         /// 1. Validates each email using <see cref="IsValidEmailFormat"/>
         /// 2. Appends specific email to error messages using postText parameter
-        /// 3. Uses <see cref="ValAll.ValidateAll"/> to aggregate results
+        /// 3. Uses <see cref="ValidateBasic.ValidateAll"/> to aggregate results
         /// Returns success only if all emails are valid
         /// </remarks>
         public static ValidateStatus IsValidEmailFormatAll(List<string> email, string title)
         {
             var validateAll = email.Select(x => IsValidEmailFormat(x, title, $"({x})")).ToList();
 
-            return ValAll.ValidateAll(validateAll);
+            return ValidateBasic.ValidateAll(validateAll);
         }
     }
 }

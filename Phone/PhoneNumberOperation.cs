@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 
@@ -28,7 +31,7 @@ namespace Bikiran.Validation.Phone
             return Regex.Replace(num, "[^0-9]", "");
         }
 
-        public static string[]? GetParsedNumber(string num)
+        public static string[] GetParsedNumber(string num)
         {
             num = GetPlainNumber(num);
             var parsedNum = new string[2];

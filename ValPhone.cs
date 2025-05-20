@@ -1,6 +1,8 @@
 ﻿using System;
 using Bikiran.Validation.Phone;
 
+#nullable enable
+
 namespace Bikiran.Validation
 {
     public class ValPhone

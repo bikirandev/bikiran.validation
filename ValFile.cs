@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.AspNetCore.Http;
 
+#nullable enable
+
 namespace Bikiran.Validation
 {
     /// <summary>

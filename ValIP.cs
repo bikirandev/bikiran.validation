@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
+#nullable enable
+
+
 namespace Bikiran.Validation
 {
     /// <summary>

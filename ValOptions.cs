@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+#nullable enable
 
 namespace Bikiran.Validation
 {
@@ -90,14 +94,14 @@ namespace Bikiran.Validation
         /// Validation rules:
         /// 1. Validates each option using <see cref="IsValidateOptions"/>
         /// 2. Appends specific option value to error messages
-        /// 3. Uses <see cref="ValAll.ValidateAll"/> to aggregate results
+        /// 3. Uses <see cref="ValidateBasic.ValidateAll"/> to aggregate results
         /// Returns success only if all options are valid
         /// </remarks>
         public static ValidateStatus IsValidateOptionsAll(List<string> options, List<string> validOptions, string title)
         {
             var valAll = options.Select(x => IsValidateOptions(x, title, validOptions, $"({x})")).ToList();
 
-            return ValAll.ValidateAll(valAll);
+            return ValidateBasic.ValidateAll(valAll);
         }
     }
 }
