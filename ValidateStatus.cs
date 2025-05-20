@@ -2,7 +2,7 @@
 
 namespace Bikiran.Validation
 {
-    public class StatusObj
+    public class ValidateStatus
     {
         public bool Error { get; set; } = true;
 

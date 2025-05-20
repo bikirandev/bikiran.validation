@@ -5,73 +5,73 @@ namespace Bikiran.Validation
 {
     public class ValFile
     {
-        public static StatusObj IsValidImageFile(IFormFile? attachment, string title)
+        public static ValidateStatus IsValidImageFile(IFormFile? attachment, string title)
         {
             if (attachment == null)
             {
-                return new StatusObj { Error = true, Message = "Please select " + title };
+                return new ValidateStatus { Error = true, Message = "Please select " + title };
             }
 
             if (attachment.Length == 0)
             {
-                return new StatusObj { Error = true, Message = "Please select " + title };
+                return new ValidateStatus { Error = true, Message = "Please select " + title };
             }
 
             if (attachment.Length > 1000000)
             {
-                return new StatusObj { Error = true, Message = title + " should be maximum 1 MB" };
+                return new ValidateStatus { Error = true, Message = title + " should be maximum 1 MB" };
             }
 
             if (attachment.ContentType != "image/jpeg" && attachment.ContentType != "image/png" && attachment.ContentType != "image/svg+xml")
             {
-                return new StatusObj { Error = true, Message = title + " should be in jpeg, png or svg format" };
+                return new ValidateStatus { Error = true, Message = title + " should be in jpeg, png or svg format" };
             }
 
-            return new StatusObj { Error = false, Message = "Success" };
+            return new ValidateStatus { Error = false, Message = "Success" };
         }
 
-        public static StatusObj IsValidDocFormat(IFormFile? attachment, string title)
+        public static ValidateStatus IsValidDocFormat(IFormFile? attachment, string title)
         {
             if (attachment == null)
             {
-                return new StatusObj { Error = true, Message = "Please select " + title };
+                return new ValidateStatus { Error = true, Message = "Please select " + title };
             }
 
             if (attachment.Length == 0)
             {
-                return new StatusObj { Error = true, Message = "Please select " + title };
+                return new ValidateStatus { Error = true, Message = "Please select " + title };
             }
 
             if (attachment.Length > 1000000)
             {
-                return new StatusObj { Error = true, Message = title + " should be maximum 1 MB" };
+                return new ValidateStatus { Error = true, Message = title + " should be maximum 1 MB" };
             }
 
             // image/*, .pdf, .doc, .docx
             if (attachment.ContentType != "application/pdf" && attachment.ContentType != "application/msword" && attachment.ContentType != "application/vnd.openxmlformats-officedocument.wordprocessingml.document" && attachment.ContentType != "image/jpeg" && attachment.ContentType != "image/png")
             {
-                return new StatusObj { Error = true, Message = title + " should be in pdf, doc, docx, jpeg or png format" };
+                return new ValidateStatus { Error = true, Message = title + " should be in pdf, doc, docx, jpeg or png format" };
             }
 
-            return new StatusObj { Error = false, Message = "Success" };
+            return new ValidateStatus { Error = false, Message = "Success" };
         }
 
 
-        public static StatusObj IsValidDocAndMediaFormat(IFormFile? attachment, string title)
+        public static ValidateStatus IsValidDocAndMediaFormat(IFormFile? attachment, string title)
         {
             if (attachment == null)
             {
-                return new StatusObj { Error = true, Message = "Please select " + title };
+                return new ValidateStatus { Error = true, Message = "Please select " + title };
             }
 
             if (attachment.Length == 0)
             {
-                return new StatusObj { Error = true, Message = "Please select " + title };
+                return new ValidateStatus { Error = true, Message = "Please select " + title };
             }
 
             if (attachment.Length > 100000000) // 100000000 to Mb = 100
             {
-                return new StatusObj { Error = true, Message = title + " should be maximum 100 MB" };
+                return new ValidateStatus { Error = true, Message = title + " should be maximum 100 MB" };
             }
 
             // image/*, .pdf, .doc, .docx
@@ -97,35 +97,35 @@ namespace Bikiran.Validation
                 && attachment.ContentType != "audio/webm"
             )
             {
-                return new StatusObj { Error = true, Message = title + " should be in pdf, doc, docx, jpeg or png format" };
+                return new ValidateStatus { Error = true, Message = title + " should be in pdf, doc, docx, jpeg or png format" };
             }
 
-            return new StatusObj { Error = false, Message = "Success" };
+            return new ValidateStatus { Error = false, Message = "Success" };
         }
 
-        public static StatusObj IsValidXlsxFormat(IFormFile? xlsxFile, string title)
+        public static ValidateStatus IsValidXlsxFormat(IFormFile? xlsxFile, string title)
         {
             if (xlsxFile == null)
             {
-                return new StatusObj { Error = true, Message = "Please select " + title };
+                return new ValidateStatus { Error = true, Message = "Please select " + title };
             }
 
             if (xlsxFile.Length == 0)
             {
-                return new StatusObj { Error = true, Message = "Please select " + title };
+                return new ValidateStatus { Error = true, Message = "Please select " + title };
             }
 
             if (xlsxFile.Length > 1000000)
             {
-                return new StatusObj { Error = true, Message = title + " should be maximum 1 MB" };
+                return new ValidateStatus { Error = true, Message = title + " should be maximum 1 MB" };
             }
 
             if (xlsxFile.ContentType != "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
             {
-                return new StatusObj { Error = true, Message = title + " should be in xlsx format" };
+                return new ValidateStatus { Error = true, Message = title + " should be in xlsx format" };
             }
 
-            return new StatusObj { Error = false, Message = "Success" };
+            return new ValidateStatus { Error = false, Message = "Success" };
         }
     }
 }
