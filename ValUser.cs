@@ -7,8 +7,26 @@ using System.Threading.Tasks;
 
 namespace Bikiran.Validation
 {
+    /// <summary>
+    /// Provides user credential validation methods for username and password formats
+    /// </summary>
     public class ValUser
     {
+        /// <summary>
+        /// Validates username format against security requirements
+        /// </summary>
+        /// <param name="userName">Username to validate</param>
+        /// <param name="title">Field name to use in error messages</param>
+        /// <returns><see cref="ValidateStatus"/> object containing validation result</returns>
+        /// <remarks>
+        /// Validation checks:
+        /// 1. Non-empty (after trimming)
+        /// 2. Length between 5-20 characters
+        /// 3. Allowed characters: letters, numbers, ., -, @
+        /// 4. Starts with a letter
+        /// 5. Ends with letter/number
+        /// Note: Special characters .-@ are allowed but not required
+        /// </remarks>
         public static ValidateStatus IsValidUserNameFormat(string userName, string title)
         {
             //--Check is Username Format is valid
@@ -50,6 +68,23 @@ namespace Bikiran.Validation
             return new ValidateStatus { Error = false, Message = "Success" };
         }
 
+        /// <summary>
+        /// Validates password format against complexity requirements
+        /// </summary>
+        /// <param name="password">Password to validate (nullable)</param>
+        /// <param name="title">Field name to use in error messages (default: "Password")</param>
+        /// <returns><see cref="ValidateStatus"/> object containing validation result</returns>
+        /// <remarks>
+        /// Validation checks:
+        /// 1. Non-empty (after trimming)
+        /// 2. Length between 8-32 characters
+        /// 3. Contains at least:
+        ///    - One uppercase letter
+        ///    - One lowercase letter
+        ///    - One digit
+        ///    - One special character
+        /// Special characters: Any non-alphanumeric Unicode character
+        /// </remarks>
         public static ValidateStatus IsValidPasswordFormat(string? password, string title = "Password")
         {
             if (password == null || password.Trim().Length == 0)

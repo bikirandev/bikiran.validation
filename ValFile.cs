@@ -3,8 +3,24 @@ using Microsoft.AspNetCore.Http;
 
 namespace Bikiran.Validation
 {
+    /// <summary>
+    /// Provides file validation methods for various file type scenarios
+    /// </summary>
     public class ValFile
     {
+        /// <summary>
+        /// Validates an image file against format and size requirements
+        /// </summary>
+        /// <param name="attachment">File to validate (nullable IFormFile)</param>
+        /// <param name="title">Field name to use in error messages</param>
+        /// <returns><see cref="ValidateStatus"/> object containing validation result</returns>
+        /// <remarks>
+        /// Validation checks:
+        /// 1. File existence (non-null and non-empty)
+        /// 2. File size ≤ 1MB
+        /// 3. MIME type must be image/jpeg, image/png, or image/svg+xml
+        /// Note: Validation based on ContentType header rather than file extension
+        /// </remarks>
         public static ValidateStatus IsValidImageFile(IFormFile? attachment, string title)
         {
             if (attachment == null)
@@ -30,6 +46,24 @@ namespace Bikiran.Validation
             return new ValidateStatus { Error = false, Message = "Success" };
         }
 
+        /// <summary>
+        /// Validates document files against format and size requirements
+        /// </summary>
+        /// <param name="attachment">File to validate (nullable IFormFile)</param>
+        /// <param name="title">Field name to use in error messages</param>
+        /// <returns><see cref="ValidateStatus"/> object containing validation result</returns>
+        /// <remarks>
+        /// Validation checks:
+        /// 1. File existence (non-null and non-empty)
+        /// 2. File size ≤ 1MB
+        /// 3. Allowed formats: PDF, DOC, DOCX, JPEG, PNG
+        /// Supported MIME types:
+        /// - application/pdf
+        /// - application/msword
+        /// - application/vnd.openxmlformats-officedocument.wordprocessingml.document
+        /// - image/jpeg
+        /// - image/png
+        /// </remarks>
         public static ValidateStatus IsValidDocFormat(IFormFile? attachment, string title)
         {
             if (attachment == null)
@@ -56,7 +90,22 @@ namespace Bikiran.Validation
             return new ValidateStatus { Error = false, Message = "Success" };
         }
 
-
+        /// <summary>
+        /// Validates document and media files against extended format and size requirements
+        /// </summary>
+        /// <param name="attachment">File to validate (nullable IFormFile)</param>
+        /// <param name="title">Field name to use in error messages</param>
+        /// <returns><see cref="ValidateStatus"/> object containing validation result</returns>
+        /// <remarks>
+        /// Validation checks:
+        /// 1. File existence (non-null and non-empty)
+        /// 2. File size ≤ 100MB
+        /// 3. Allowed formats:
+        ///    - Documents: PDF, DOC, DOCX, JPEG, PNG
+        ///    - Video: MP4, AVI, WMV, MOV, 3GP, 3G2, OGG, WEBM
+        ///    - Audio: MPEG, MP4, OGG, WAV, WEBM
+        /// Note: Error message currently doesn't reflect all allowed media types
+        /// </remarks>
         public static ValidateStatus IsValidDocAndMediaFormat(IFormFile? attachment, string title)
         {
             if (attachment == null)
@@ -103,6 +152,19 @@ namespace Bikiran.Validation
             return new ValidateStatus { Error = false, Message = "Success" };
         }
 
+        /// <summary>
+        /// Validates Excel files (XLSX format) against format and size requirements
+        /// </summary>
+        /// <param name="xlsxFile">File to validate (nullable IFormFile)</param>
+        /// <param name="title">Field name to use in error messages</param>
+        /// <returns><see cref="ValidateStatus"/> object containing validation result</returns>
+        /// <remarks>
+        /// Validation checks:
+        /// 1. File existence (non-null and non-empty)
+        /// 2. File size ≤ 1MB
+        /// 3. Strict MIME type validation for application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+        /// Note: Specifically validates modern Excel format (XLSX) only
+        /// </remarks>
         public static ValidateStatus IsValidXlsxFormat(IFormFile? xlsxFile, string title)
         {
             if (xlsxFile == null)

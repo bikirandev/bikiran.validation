@@ -3,8 +3,31 @@ using System.Text.RegularExpressions;
 
 namespace Bikiran.Validation
 {
+
+    /// <summary>
+    /// Provides URL validation methods for format verification
+    /// </summary>
     public class ValURL
     {
+        /// <summary>
+        /// Validates a URL format including support for localhost and optional paths
+        /// </summary>
+        /// <param name="logoUrl">URL to validate (nullable string)</param>
+        /// <param name="title">Field name to use in error messages</param>
+        /// <param name="isOptional">When true, allows empty/null input (default: false)</param>
+        /// <returns><see cref="ValidateStatus"/> object containing validation result</returns>
+        /// <remarks>
+        /// Validation checks:
+        /// 1. Optional empty handling when isOptional=true
+        /// 2. Non-empty check for required URLs
+        /// 3. Matches URL pattern using regular expression:
+        ///    - Requires http/https protocol
+        ///    - Allows localhost with port numbers
+        ///    - Valid domain names
+        ///    - Optional paths and query parameters
+        ///    - Case-insensitive validation
+        /// Note: Validates format only, not accessibility or existence of the resource.
+        /// </remarks>
         public static ValidateStatus IsValidUrlFormat(string? logoUrl, string title, bool isOptional = false)
         {
             if (string.IsNullOrEmpty(logoUrl) && isOptional)

@@ -3,8 +3,24 @@ using System.Text.RegularExpressions;
 
 namespace Bikiran.Validation
 {
+    /// <summary>
+    /// Provides date validation methods for common validation scenarios
+    /// </summary>
     public class ValDate
     {
+        /// <summary>
+        /// Validates if a string is in YYYY-MM-DD format and non-empty
+        /// </summary>
+        /// <param name="date">The date string to validate (nullable)</param>
+        /// <param name="title">Field name to use in error messages (default: "Date")</param>
+        /// <returns><see cref="ValidateStatus"/> object containing validation result</returns>
+        /// <remarks>
+        /// Performs two checks:
+        /// 1. Checks if the input is non-empty
+        /// 2. Validates format against YYYY-MM-DD pattern using regular expression
+        /// Note: This validation only checks format validity, not calendar correctness.
+        /// For example, "2023-02-30" would pass format check but is not a valid date.
+        /// </remarks>
         public static ValidateStatus IsValidDateFormat(string? date, string title = "Date")
         {
             if (string.IsNullOrEmpty(date) || date.Length == 0)
