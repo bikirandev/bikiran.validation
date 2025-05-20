@@ -18,5 +18,20 @@ namespace Bikiran.Validation
 
             return new ValidateStatus { Error = false, Message = "Success", ErrorIndex = -1 };
         }
+
+        public static string GetReferenceName(List<string> refNames, int errorIndex)
+        {
+            if (errorIndex == -1)
+            {
+                return "";
+            }
+
+            if (errorIndex >= refNames.Count)
+            {
+                return "";
+            }
+
+            return refNames[errorIndex];
+        }
     }
 }

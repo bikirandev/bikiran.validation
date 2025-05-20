@@ -1,0 +1,26 @@
+﻿using System;
+using System.Text.RegularExpressions;
+
+namespace Bikiran.Validation
+{
+    public class ValDate
+    {
+        public static ValidateStatus IsValidDateFormat(string? date, string title = "Date")
+        {
+            if (string.IsNullOrEmpty(date) || date.Length == 0)
+            {
+                return new ValidateStatus { Error = true, Message = "Please enter " + title };
+            }
+
+            // Define a regular expression pattern to match the YYYY-MM-DD format
+            string pattern = @"^\d{4}-\d{2}-\d{2}$";
+            var st = Regex.IsMatch(date, pattern);
+            if (!st)
+            {
+                return new ValidateStatus { Error = true, Message = "Please enter valid " + title };
+            }
+
+            return new ValidateStatus { Error = false, Message = "Success" };
+        }
+    }
+}
