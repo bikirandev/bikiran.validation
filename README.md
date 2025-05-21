@@ -10,7 +10,7 @@ A comprehensive utility library for .NET development with debugging, API support
 ## Installation
 
 ```bash
-dotnet add package Bikiran.Utils
+dotnet add package Bikiran.Validation
 ```
 
 A comprehensive validation library for .NET applications providing robust validation utilities for common data types and formats.
@@ -44,6 +44,7 @@ A comprehensive validation library for .NET applications providing robust valida
 | ValOptions      | Option validation     | IsValidateOptions, IsValidateOptionsAll      |
 | ValPath         | Path validation       | IsValidPathPattern                          |
 | ValDomain       | Domain validation     | IsValidDomainFormat, IsValidDomainFormatAll  |
+| ValGit		  | Git URL validation    | IsValidGitRepoSsh							  |
 
 ## Advanced Usage
 
