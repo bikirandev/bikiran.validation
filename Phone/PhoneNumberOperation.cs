@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 
@@ -15,9 +16,13 @@ namespace Bikiran.Validation.Phone
         {
             try
             {
-                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Phone", "countries.json");
+                var assembly = Assembly.GetExecutingAssembly();
+                var resourceName = "Bikiran.Validation.Phone.countries.json";
 
-                var json = File.ReadAllText(filePath) ?? "";
+                using var stream = assembly.GetManifestResourceStream(resourceName);
+                using var reader = new StreamReader(stream ?? throw new FileNotFoundException("countries.json not found in resources"));
+                var json = reader.ReadToEnd();
+
                 _countryCodes = JsonConvert.DeserializeObject<List<CountryCode>>(json) ?? [];
             }
             catch (Exception)

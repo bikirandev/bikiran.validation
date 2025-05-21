@@ -4,7 +4,7 @@
 
 		<!-- Core Package Metadata -->
 		<PackageId>Bikiran.Validation</PackageId>
-		<Version>1.0.4</Version>
+		<Version>1.0.5</Version>
 		<Authors>bishojit</Authors>
 		<Company>BIKIRAN</Company>
 		<Description>Utility functions for common operations</Description>
@@ -29,6 +29,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="README.md" Pack="true" PackagePath="\" />
+		<None Include="README.md" Pack="true" PackagePath="" />
+		<None Include="Phone\countries.json" Pack="true" PackagePath="contentFiles\any\any\Phone\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Phone\countries.json" />
 	</ItemGroup>
 </Project>
