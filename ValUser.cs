@@ -25,22 +25,22 @@ namespace Bikiran.Validation
         /// 5. Ends with letter/number
         /// Note: Special characters .-@ are allowed but not required
         /// </remarks>
-        public static ValidateStatus IsValidUserNameFormat(string userName, string title)
+        public static ValidateStatus IsValidUserNameFormat(string userName, string title, int min = 5, int max = 20)
         {
             //--Check is Username Format is valid
             if (userName == null || userName.Trim().Length == 0)
             {
-                return new ValidateStatus { Error = true, Message = "Please enter " + title };
+                return new ValidateStatus { Error = true, Message = $"Please enter {title}" };
             }
 
-            if (userName.Length < 5)
+            if (userName.Length < min)
             {
-                return new ValidateStatus { Error = true, Message = title + " should be minimum 5 characters long" };
+                return new ValidateStatus { Error = true, Message = $"{title} should be minimum {min} characters long" };
             }
 
-            if (userName.Length > 20)
+            if (userName.Length > max)
             {
-                return new ValidateStatus { Error = true, Message = title + " should be maximum 20 characters long" };
+                return new ValidateStatus { Error = true, Message = $"{title} should be maximum {max} characters long" };
             }
 
             //--Define a regular expression pattern to match the username format
@@ -48,7 +48,7 @@ namespace Bikiran.Validation
             var st = Regex.IsMatch(userName, pattern);
             if (!st)
             {
-                return new ValidateStatus { Error = true, Message = title + " should be alphanumeric or Dot(.), Hyphen(-), At the rate(@)" };
+                return new ValidateStatus { Error = true, Message = title + $"{title} should be alphanumeric or Dot(.), Hyphen(-), At the rate(@)" };
             }
 
             //--Check if username not starts with a letter
