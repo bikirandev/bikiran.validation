@@ -191,5 +191,52 @@ namespace Bikiran.Validation
 
             return new ValidateStatus { Error = false, Message = "Success" };
         }
+
+        /// <summary>
+        /// Validates an uploaded JSON file based on presence, size, and MIME type.
+        /// </summary>
+        /// <param name="file">The uploaded JSON file to validate.</param>
+        /// <param name="title">The display name of the file field (used in error messages).</param>
+        /// <param name="maxSize">
+        /// The maximum allowed file size in bytes. Default is 10 MB (10,485,760 bytes).
+        /// </param>
+        /// <returns>
+        /// A <see cref="ValidateStatus"/> object indicating whether the file is valid or contains an error with a message.
+        /// </returns>
+        /// <remarks>
+        /// Validation rules:
+        /// <list type="number">
+        /// <item><description>Checks if the file is not null and not empty.</description></item>
+        /// <item><description>Checks the file size does not exceed <paramref name="maxSize"/>.</description></item>
+        /// <item><description>Only allows MIME type <c>application/json</c>.</description></item>
+        /// </list>
+        /// </remarks>
+        public static ValidateStatus IsValidJsonFile(IFormFile? file, string title, int maxSize = 10485760, int minSize=) // Default max size is 10 MB (10 * 1024 * 1024 bytes)
+        {
+
+            //max size in routed number like 10, 20, 50, 100, etc. not 2.3 MB or 1.5 GB
+            int maxSizeInMb = maxSize / 1024 / 1024; // Convert bytes to MB for display in error message
+
+            if (file == null)
+            {
+                return new ValidateStatus { Error = true, Message = $"Please select {title}" };
+            }
+            if (file.Length == 0)
+            {
+                return new ValidateStatus { Error = true, Message = $"Please select {title}" };
+            }
+
+            if (file.Length > maxSize)
+            {
+                return new ValidateStatus { Error = true, Message = $"{title} should be maximum {maxSize / 1024 / 1024} MB" };
+            }
+
+            if (file.ContentType != "application/json")
+            {
+                return new ValidateStatus { Error = true, Message = $"{title} should be in JSON format" };
+            }
+
+            return new ValidateStatus { Error = false, Message = "Success" };
+        }
     }
 }
