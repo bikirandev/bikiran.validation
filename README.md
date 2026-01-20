@@ -31,21 +31,21 @@ A comprehensive validation library for .NET applications providing robust valida
 
 ## Available Validators
 
-| Validator Class | Description           | Key Methods                                           |
-| --------------- | --------------------- | ----------------------------------------------------- |
-| ValEmail        | Email validation      | IsValidEmailFormat, IsValidEmailFormatAll             |
-| ValDate         | Date formatting       | IsValidDateFormat                                     |
-| ValUser         | User credentials      | IsValidUserNameFormat, IsValidPasswordFormat          |
-| ValFile         | File validation       | IsValidImageFile, IsValidDocFormat, IsValidXlsxFormat |
-| ValIP           | IP Address validation | IsValidIpFormat, IsValidIpFormatAll                   |
-| ValURL          | URL validation        | IsValidUrlFormat                                      |
-| ValString       | String validation     | IsValidString, IsValidLongString                      |
-| ValNumber       | Numeric validation    | IsValidateInt, IsValidateNumber                       |
-| ValBoolean      | Boolean checks        | IsEqual, IsTrue, IsFalse                              |
-| ValOptions      | Option validation     | IsValidateOptions, IsValidateOptionsAll               |
-| ValPath         | Path validation       | IsValidPath                                           |
-| ValDomain       | Domain validation     | IsValidDomainFormat, IsValidDomainFormatAll           |
-| ValGit          | Git URL validation    | IsValidGitRepoSsh                                     |
+| Validator Class | Description           | Key Methods                                                         |
+| --------------- | --------------------- | ------------------------------------------------------------------- |
+| ValEmail        | Email validation      | IsValidEmailFormat, IsValidEmailFormatAll                           |
+| ValDate         | Date formatting       | IsValidDateFormat                                                   |
+| ValUser         | User credentials      | IsCleanUserNameFormat, IsValidUserNameFormat, IsValidPasswordFormat |
+| ValFile         | File validation       | IsValidImageFile, IsValidDocFormat, IsValidXlsxFormat               |
+| ValIP           | IP Address validation | IsValidIpFormat, IsValidIpFormatAll                                 |
+| ValURL          | URL validation        | IsValidUrlFormat                                                    |
+| ValString       | String validation     | IsValidString, IsValidLongString                                    |
+| ValNumber       | Numeric validation    | IsValidateInt, IsValidateNumber                                     |
+| ValBoolean      | Boolean checks        | IsEqual, IsTrue, IsFalse                                            |
+| ValOptions      | Option validation     | IsValidateOptions, IsValidateOptionsAll                             |
+| ValPath         | Path validation       | IsValidPath                                                         |
+| ValDomain       | Domain validation     | IsValidDomainFormat, IsValidDomainFormatAll                         |
+| ValGit          | Git URL validation    | IsValidGitRepoSsh                                                   |
 
 ## Advanced Usage
 
@@ -67,10 +67,19 @@ A comprehensive validation library for .NET applications providing robust valida
 
 ### Username Requirements
 
-- 5-20 characters
-- Alphanumeric with .-@
-- Starts with letter
-- Ends with letter/number
+**IsCleanUserNameFormat** (Strict alphanumeric):
+
+- 5-20 characters (customizable)
+- Only alphanumeric characters (a-z, A-Z, 0-9)
+- Must start with a letter or digit
+- Must end with a letter or digit
+
+**IsValidUserNameFormat** (Allows special characters):
+
+- 5-20 characters (customizable)
+- Alphanumeric with .-@ allowed
+- Must start with a letter or digit
+- Must end with a letter or digit
 
 ### File Validation
 
