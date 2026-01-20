@@ -1,6 +1,5 @@
 # Bikiran.Validation
 
-
 ![NuGet Version](https://img.shields.io/nuget/v/Bikiran.Validation.svg?style=flat-square)
 ![License](https://img.shields.io/github/license/bikirandev/Bikiran.Validation.svg?style=flat-square)
 [![API Docs](https://img.shields.io/badge/docs-API%20Reference-blue.svg)](https://github.com/bikirandev/Bikiran.Validation/wiki)
@@ -27,33 +26,39 @@ A comprehensive validation library for .NET applications providing robust valida
 - **Cross-Platform** .NET Standard 2.0+ Support
 
 ## Installation
+
 ## Quick Start
+
 ## Available Validators
 
-| Validator Class | Description           | Key Methods                                 |
-|-----------------|----------------------|---------------------------------------------|
-| ValEmail        | Email validation      | IsValidEmailFormat, IsValidEmailFormatAll   |
-| ValDate         | Date formatting       | IsValidDateFormat                           |
-| ValUser         | User credentials      | IsValidUserNameFormat, IsValidPasswordFormat|
+| Validator Class | Description           | Key Methods                                           |
+| --------------- | --------------------- | ----------------------------------------------------- |
+| ValEmail        | Email validation      | IsValidEmailFormat, IsValidEmailFormatAll             |
+| ValDate         | Date formatting       | IsValidDateFormat                                     |
+| ValUser         | User credentials      | IsValidUserNameFormat, IsValidPasswordFormat          |
 | ValFile         | File validation       | IsValidImageFile, IsValidDocFormat, IsValidXlsxFormat |
-| ValIP           | IP Address validation | IsValidIpFormat, IsValidIpFormatAll         |
-| ValURL          | URL validation        | IsValidUrlFormat                            |
-| ValString       | String validation     | IsValidString, IsValidLongString            |
-| ValNumber       | Numeric validation    | IsValidateInt, IsValidateNumber             |
-| ValBoolean      | Boolean checks        | IsEqual, IsTrue, IsFalse                    |
-| ValOptions      | Option validation     | IsValidateOptions, IsValidateOptionsAll      |
-| ValPath         | Path validation       | IsValidPathPattern                          |
-| ValDomain       | Domain validation     | IsValidDomainFormat, IsValidDomainFormatAll  |
-| ValGit		  | Git URL validation    | IsValidGitRepoSsh							  |
+| ValIP           | IP Address validation | IsValidIpFormat, IsValidIpFormatAll                   |
+| ValURL          | URL validation        | IsValidUrlFormat                                      |
+| ValString       | String validation     | IsValidString, IsValidLongString                      |
+| ValNumber       | Numeric validation    | IsValidateInt, IsValidateNumber                       |
+| ValBoolean      | Boolean checks        | IsEqual, IsTrue, IsFalse                              |
+| ValOptions      | Option validation     | IsValidateOptions, IsValidateOptionsAll               |
+| ValPath         | Path validation       | IsValidPath                                           |
+| ValDomain       | Domain validation     | IsValidDomainFormat, IsValidDomainFormatAll           |
+| ValGit          | Git URL validation    | IsValidGitRepoSsh                                     |
 
 ## Advanced Usage
 
 ### Custom Error Messages
+
 ### Batch Validation
+
 ### Optional Fields
+
 ## Validation Rules Details
 
 ### Password Requirements
+
 - 8-32 characters
 - 1 uppercase letter
 - 1 lowercase letter
@@ -61,12 +66,14 @@ A comprehensive validation library for .NET applications providing robust valida
 - 1 special character
 
 ### Username Requirements
+
 - 5-20 characters
 - Alphanumeric with .-@
 - Starts with letter
 - Ends with letter/number
 
 ### File Validation
+
 - Images: JPEG, PNG, SVG (max 1MB)
 - Documents: PDF, DOC, DOCX (max 1MB)
 - Media Files: MP4, AVI, MP3, WAV (max 100MB)

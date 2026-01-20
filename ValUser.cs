@@ -20,12 +20,12 @@ namespace Bikiran.Validation
         /// Validation checks:
         /// 1. Non-empty (after trimming)
         /// 2. Length between 5-20 characters
-        /// 3. Allowed characters: letters, numbers, ., -, @
+        /// 3. Allowed characters: letters, numbers
         /// 4. Starts with a letter
         /// 5. Ends with letter/number
         /// Note: Special characters .-@ are allowed but not required
         /// </remarks>
-        public static ValidateStatus IsValidUserNameFormat(string userName, string title, int min = 5, int max = 20)
+        public static ValidateStatus IsCleanUserNameFormat(string userName, string title, int min = 5, int max = 20)
         {
             //--Check is Username Format is valid
             if (userName == null || userName.Trim().Length == 0)
@@ -44,15 +44,15 @@ namespace Bikiran.Validation
             }
 
             //--Define a regular expression pattern to match the username format
-            string pattern = @"^[a-zA-Z0-9\.\-\@]+$";
+            string pattern = @"^[a-zA-Z0-9]+$";
             var st = Regex.IsMatch(userName, pattern);
             if (!st)
             {
-                return new ValidateStatus { Error = true, Message = title + $"{title} should be alphanumeric or Dot(.), Hyphen(-), At the rate(@)" };
+                return new ValidateStatus { Error = true, Message = title + $"{title} should be alphanumeric" };
             }
 
             //--Check if username not starts with a letter
-            if (!char.IsLetter(userName[0]))
+            if (!char.IsLetterOrDigit(userName[0]))
             {
                 return new ValidateStatus { Error = true, Message = title + " should start with a letter" };
             }
@@ -61,6 +61,40 @@ namespace Bikiran.Validation
             if (!char.IsLetterOrDigit(userName[^1]))
             {
                 return new ValidateStatus { Error = true, Message = title + " should end with a letter or number" };
+            }
+
+            return new ValidateStatus { Error = false, Message = "Success" };
+        }
+
+        /// <summary>
+        /// Validates username format against security requirements
+        /// </summary>
+        /// <param name="userName">Username to validate</param>
+        /// <param name="title">Field name to use in error messages</param>
+        /// <returns><see cref="ValidateStatus"/> object containing validation result</returns>
+        /// <remarks>
+        /// Validation checks:
+        /// 1. Non-empty (after trimming)
+        /// 2. Length between 5-20 characters
+        /// 3. Allowed characters: letters, numbers, ., -, @
+        /// 4. Starts with a letter
+        /// 5. Ends with letter/number
+        /// Note: Special characters .-@ are allowed but not required
+        /// </remarks>
+        public static ValidateStatus IsValidUserNameFormat(string userName, string title, int min = 5, int max = 20)
+        {
+            var check = IsCleanUserNameFormat(userName, title, min, max);
+            if (check.Error)
+            {
+                return check;
+            }
+
+            //--Define a regular expression pattern to match the username format
+            string pattern = @"^[a-zA-Z0-9\.\-\@]+$";
+            var st = Regex.IsMatch(userName, pattern);
+            if (!st)
+            {
+                return new ValidateStatus { Error = true, Message = title + $"{title} should be alphanumeric or Dot(.), Hyphen(-), At the rate(@)" };
             }
 
             return new ValidateStatus { Error = false, Message = "Success" };
