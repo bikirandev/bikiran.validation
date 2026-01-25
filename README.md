@@ -46,6 +46,7 @@ A comprehensive validation library for .NET applications providing robust valida
 | ValPath         | Path validation       | IsValidPath                                                         |
 | ValDomain       | Domain validation     | IsValidDomainFormat, IsValidDomainFormatAll                         |
 | ValGit          | Git URL validation    | IsValidGitRepoSsh                                                   |
+| ValServer       | Server validation     | IsValidServerNameFormat                                             |
 
 ## Advanced Usage
 
@@ -80,6 +81,16 @@ A comprehensive validation library for .NET applications providing robust valida
 - Alphanumeric with .-@ allowed
 - Must start with a letter or digit
 - Must end with a letter or digit
+
+### Server Name Requirements
+
+**IsValidServerNameFormat**:
+
+- 5-32 characters (customizable)
+- Alphanumeric (a-z, A-Z, 0-9) with customizable special characters (default: -\_)
+- Must start with a letter or digit
+- Must end with a letter or digit
+- Special characters allowed only in the middle
 
 ### File Validation
 
