@@ -4,19 +4,11 @@
 ![License](https://img.shields.io/github/license/bikirandev/Bikiran.Validation.svg?style=flat-square)
 [![API Docs](https://img.shields.io/badge/docs-API%20Reference-blue.svg)](https://github.com/bikirandev/Bikiran.Validation/wiki)
 
-A comprehensive utility library for .NET development with debugging, API support, and configuration management
-
-## Installation
-
-```bash
-dotnet add package Bikiran.Validation
-```
-
-A comprehensive validation library for .NET applications providing robust validation utilities for common data types and formats.
+A comprehensive validation library for .NET applications providing robust validation utilities for common data types and formats including emails, URLs, IP addresses, user credentials, files, phone numbers, server names, and more.
 
 ## Features
 
-- **20+ Validation Types** (Email, Date, IP, URL, File formats, etc.)
+- **15+ Validation Types** (Email, Date, IP, URL, File formats, Phone, Server names, etc.)
 - **Extensible Validation Framework**
 - **Customizable Error Messages**
 - **Regex-Powered Validation**
@@ -27,7 +19,36 @@ A comprehensive validation library for .NET applications providing robust valida
 
 ## Installation
 
+```bash
+dotnet add package Bikiran.Validation
+```
+
 ## Quick Start
+
+```csharp
+using Bikiran.Validation;
+
+// Validate an email
+var emailResult = ValEmail.IsValidEmailFormat("user@example.com", "Email Address");
+if (emailResult.Error)
+{
+    Console.WriteLine(emailResult.Message); // Display error
+}
+
+// Validate a password
+var passwordResult = ValUser.IsValidPasswordFormat("SecurePass123!", "Password");
+if (!passwordResult.Error)
+{
+    Console.WriteLine("Password is valid!");
+}
+
+// Validate a server name
+var serverResult = ValServer.IsValidServerNameFormat("web-server-01", "Server Name");
+if (!serverResult.Error)
+{
+    Console.WriteLine("Server name is valid!");
+}
+```
 
 ## Available Validators
 
@@ -46,15 +67,37 @@ A comprehensive validation library for .NET applications providing robust valida
 | ValPath         | Path validation       | IsValidPath                                                         |
 | ValDomain       | Domain validation     | IsValidDomainFormat, IsValidDomainFormatAll                         |
 | ValGit          | Git URL validation    | IsValidGitRepoSsh                                                   |
+| ValPhone        | Phone validation      | IsValidPhoneNumberFormat                                            |
 | ValServer       | Server validation     | IsValidServerNameFormat                                             |
 
 ## Advanced Usage
 
 ### Custom Error Messages
 
-### Batch Validation
+```csharp
+// Customize the field name in error messages
+var result = ValEmail.IsValidEmailFormat(email, "Work Email Address");
+// Error message will be: "Please enter valid Work Email Address"
+```
 
 ### Optional Fields
+
+```csharp
+// Use isOptional parameter for optional fields
+var phoneResult = ValPhone.IsValidPhoneNumberFormat(phoneNumber, "Phone Number", isOptional: true);
+if (!phoneResult.Error || phoneResult.Message == "Optional")
+{
+    // Field is either valid or empty (which is acceptable)
+}
+```
+
+### Customizable Length Constraints
+
+```csharp
+// Customize min/max lengths
+var usernameResult = ValUser.IsValidUserNameFormat(username, "Username", min: 3, max: 30);
+var serverResult = ValServer.IsValidServerNameFormat(serverName, "Server", min: 3, max: 50, specialCharacter: "-_.");
+```
 
 ## Validation Rules Details
 

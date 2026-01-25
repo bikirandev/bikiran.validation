@@ -7,13 +7,8 @@
 		<Version>1.0.9</Version>
 		<Authors>bishojit</Authors>
 		<Company>BIKIRAN</Company>
-		<Description>Utility functions for common operations</Description>
-		<PackageTags>Form Validation tools</PackageTags>
-
-		<!-- Recommended Additions -->
-		<PackageProjectUrl>https://github.com/bikirandev/bikiran.validation</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/bikirandev/bikiran.validation.git</RepositoryUrl>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Description>A comprehensive .NET validation library providing robust utilities for validating emails, URLs, IP addresses, phone numbers, user credentials, file formats, server names, domains, dates, and more. Features customizable error messages, optional field support, and regex-powered validation.</Description>
+		<PackageTags>validation;form-validation;email-validation;url-validation;ip-validation;phone-validation;password-validation;username-validation;dotnet;csharp;data-validation;input-validation;server-validation;domain-validation</PackageTags>
 		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 
